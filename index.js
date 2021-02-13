@@ -29,6 +29,18 @@ const promptUser = () => {
             message: "What is your email address?",
         },
         {
+            type: "checkbox",
+            name: "licsense",
+            message: "Choose a lisense:",
+            choice: [
+                "MIT",
+                "GNU",
+                "OSL-3.0",
+                "None",
+
+            ]
+        },
+        {
             type: "input",
             name: "projectDiscroption",
             message: "Please discribe your project.",
