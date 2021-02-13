@@ -30,12 +30,12 @@ const promptUser = () => {
         },
         {
             type: "checkbox",
-            name: "licsense",
+            name: "license",
             message: "Choose a lisense:",
             choice: [
                 "MIT",
-                "GNU",
-                "OSL-3.0",
+                "GNU GPL v3",
+                "Apache 2.0",
                 "None",
 
             ]
@@ -47,7 +47,7 @@ const promptUser = () => {
         },
         {
             type: "input",
-            name: "Installation",
+            name: "installation",
             message: "Input installation Instructions.",
         },
         {
@@ -59,12 +59,19 @@ const promptUser = () => {
 
     ]).then((answers) => {
         console.log(answers);
-
-        fs.appendFile(filePath, generateMarkdown, (err) => {
+        if (answers.license === "MIT") {
+            answers.lisense = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+        } else if (answers.lisense === "GNU GPL v3") {
+            answers.license = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)"
+        } else if (answers.lisense === "Apache 2.0") {
+            answers.license = "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
+        }
+            fs.appendFile(filePath, generateMarkdown, (err) => {
             err ? console.log(err) : console.log("File created!")
         });
     });
 
+    promptUser();
 
     // // function to write README file
     // const writeToFile = (fileName, data) => {

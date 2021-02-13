@@ -1,2 +1,7 @@
 # README-Generator
-Generates a README.md file
+---
+
+This project will help genereate a profissional README markdown file.  
+
+- GitHub: https://github.com/MVPeter/README-Generator
+

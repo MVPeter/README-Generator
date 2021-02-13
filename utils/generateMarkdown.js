@@ -1,9 +1,9 @@
 // function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  # ${projectTitle}
+  # ${answers.projectTitle}
 
-  * [GitHub Repository](${giturl})
+  * [GitHub Repository](${answers.giturl})
   
   ## Table of Contents
     - Discription
@@ -19,42 +19,42 @@ function generateMarkdown(data) {
   
   ## Discription
 
-  ${projectDiscription}
+  ${answers.projectDiscription}
 
   ---
   
   ## Installation
 
-  ${screenShot})
+  ${answers.installation})
 
   ---
   
   ### Usage
 
-    * ${Usage}
+    * ${answers.Usage}
 
   ---
   
   ### Tests
 
-    * ${tests}
+    * ${answers.tests}
 
   
   ### Contributions
 
-    * ${contributions}
+    * ${answers.contributions}
 
   ---
   
   ### License
 
-    * ${license}
+    * ${answers.license}
 
   ---
   
   ### Questions
   - GitHub Profile: [GitHub Profile](https://github.com/${answers.githubuser})
-  - For further questions please contact me at email:${questions}
+  - For further questions please contact me at email:${answers.email}
 
   `;
 }
