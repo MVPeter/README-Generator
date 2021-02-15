@@ -57,11 +57,11 @@ inquirer.prompt([
     },
 ]).then((answers) => {
     console.log(answers);
-    updateBadge();
-    fs.appendFile(filePath, generateMarkdown(answers));
-    (err) => err ? console.log(err) : console.log("File created!");
-
+    // updateBadge();
+    const makeFile = generateMarkdown(answers);
+    fs.writeFile(filePath, makeFile), (err) => err ? console.log(err) : console.log("File created!");
 });
+
 
 function updateBadge() {
     if (answers.license === "MIT") {
