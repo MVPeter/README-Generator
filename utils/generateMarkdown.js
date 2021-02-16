@@ -1,6 +1,6 @@
 // function to generate markdown for README
 const generateMarkdown = (answers) =>
-` # ${answers.projectTitle}
+  ` # ${answers.projectTitle}
   ---
   * [GitHub Repository](${answers.giturl})
   ${answers.license}

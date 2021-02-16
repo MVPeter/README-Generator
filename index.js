@@ -1,20 +1,15 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-// const generateMarkdown = require('./utils/generateMarkdown');
 
-// const writeFile = fs.writeFile;
+
+
 const filePath = "./document/README.md";
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const MITlisense = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-const GPLv3license = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
-const Apache20license = "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
-const license = "[![License](https://img.shields.io/badge/License-None-inactive.svg)]";
 
 
 // array of questions for user
-// inquirer.prompt([
 const userPromts = () =>
     inquirer.prompt([
         {
@@ -50,7 +45,7 @@ const userPromts = () =>
         },
         {
             type: "input",
-            name: "projectDiscroption",
+            name: "projectDiscription",
             message: "Please discribe your project.",
         },
         {
@@ -65,18 +60,23 @@ const userPromts = () =>
         },
         {
             type: "input",
+            name: "testing",
+            message: "Input testing instructions.",
+        },
+        {
+            type: "input",
             name: "contributions",
             message: "Input contributions.",
         },
-      
     ]);
 
 const generateMarkdown = (answers) =>
     ` # ${answers.projectTitle}
   ---
   * [GitHub Repository](${answers.giturl})
-  ${license}
-  
+
+  ![License: MIT](https://img.shields.io/badge/License-${answers.license}-informational "License Badge")
+      
   ## Table of Contents
     - Discription
     - Installation
@@ -96,19 +96,19 @@ const generateMarkdown = (answers) =>
   
   ## Installation
 
-  ${answers.installation})
+  ${answers.installation}
 
   ---
   
   ### Usage
 
-    * ${answers.Usage}
+    * ${answers.usage}
 
   ---
   
   ### Tests
 
-    * ${answers.tests}
+    * ${answers.testing}
 
   
   ### Contributions
@@ -119,13 +119,14 @@ const generateMarkdown = (answers) =>
   
   ### License
 
-    * ${answers.license}
+    * This project is covered by the following license(s): ${answers.license}
+    
 
   ---
   
   ### Questions
   - GitHub Profile: [GitHub Profile](https://github.com/${answers.githubuser})
-  - For further questions please contact me at email:${answers.email}
+  - For further questions please contact me at email:  ${answers.email}
 
   `;
 
@@ -134,46 +135,5 @@ const generateMarkdown = (answers) =>
 userPromts()
     // .then((updateBadge(answers)))
     .then((answers) => writeFileAsync(filePath, generateMarkdown(answers)))
-    .then(() => console.log(answers))
+    // .then(() => console.log(answers))
     .catch((err) => console.error(err));
-
-
-
-// .then((answers) => {
-//     console.log(answers);
-//     updateBadge(answers);
-//     fs.writeFile(filePath, makeFile);
-// }
-// .catch ((err) => err ? console.error(err) : console.log("File created!"));
-// );
-
-
-function updateBadge(answers) {
-    if (answers.license === "MIT") {
-        licenses = MITlisense;
-    } else if (answers.lisense === "GNU GPL v3") {
-        licenses = GPLv3license;
-    } else if (answers.lisense === "Apache 2.0") {
-        license = Apache20license;
-    } else {
-        lisense = Nonelisense;
-    }
-}
-
-
-    // // function to write README file
-    // const writeToFile = (fileName, data) => {
-    //     fs.appendFile(fileName,)
-    // }
-
-    // // function to initialize program
-    // const init = async () => {
-    //     console.log("This will help you generate a README.MD file");
-
-    //     const RMtxt = generateMarkdown(answers)
-
-    // }
-
-    // // function call to initialize program
-    // init();
-
