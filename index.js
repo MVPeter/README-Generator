@@ -1,8 +1,12 @@
+//required modules
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 
+//file name and location of output.
 const filePath = "./document/README.md";
+
+//write the file.
 const writeFileAsync = util.promisify(fs.writeFile);
 
 // array of questions for user
@@ -66,6 +70,7 @@ const userPromts = () =>
         },
     ]);
 
+//Tempalte README.md
 const generateMarkdown = (answers) =>
     ` # ${answers.projectTitle}
   ---
@@ -126,10 +131,8 @@ const generateMarkdown = (answers) =>
 
   `;
 
-// const makeFile = generateMarkdown(answers);
 
+// Run function and create the file.
 userPromts()
-    // .then((updateBadge(answers)))
     .then((answers) => writeFileAsync(filePath, generateMarkdown(answers)))
-    // .then(() => console.log(answers))
     .catch((err) => console.error(err));
